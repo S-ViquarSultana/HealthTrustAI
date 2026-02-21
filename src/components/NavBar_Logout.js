@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "./logo_new.jpg";
+import logo from "./logo_new.png";
 
 const NavBar_Logout = () => {
   const navigate = useNavigate();
@@ -20,17 +20,17 @@ const NavBar_Logout = () => {
           </div>
 
           {/* Title */}
-          <div className="mt-4 sm:mt-0 sm:ml-10 text-center">
+          <div className="mt-4 sm:mt-0 sm:ml-5 text-center">
             <span
-              className="text-2xl sm:text-3xl lg:text-4xl font-semibold cursor-pointer"
+              className="text-xl sm:text-3xl lg:text-3xl font-semibold cursor-pointer whitespace-nowrap"
               onClick={() => navigate("/")}
             >
-              Secure Electronic Health Records
+              Smart & Secure Electronic Health Records
             </span>
           </div>
 
           {/* Navigation buttons */}
-          <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 sm:mt-0">
+          <div className="flex flex-col sm:flex-row sm:space-x-4 mt-4 sm:mt-0 sm:ml-auto">
             <button
               className="text-lg px-3 py-1.5 rounded-md font-medium transition-transform duration-300 ease-in-out transform hover:scale-110"
               onClick={() => navigate("/")}

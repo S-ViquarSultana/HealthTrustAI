@@ -57,7 +57,7 @@ const DoctorViewPatient = () => {
   return (
     <div>
     <NavBar_Logout></NavBar_Logout>
-    <div className="bg-b to-gray-500 p-4 sm:p-10 font-mono text-white h-30 flex flex-col justify-center items-center">
+    <div className="bg-b to-gray-500 p-4 sm:p-10 font-inter text-white h-30 flex flex-col justify-center items-center">
       <h2 className="text-2xl sm:text-4xl font-bold mb-6">Patient's Profile</h2>
       <br/>
         {patientDetails && (

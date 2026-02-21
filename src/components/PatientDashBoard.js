@@ -17,7 +17,14 @@ const PatientDashBoard = () => {
   const viewprofile = () => {
     navigate("/patient/" + hhNumber + "/viewprofile");
   };
-  
+
+  const uploadRecords = () => {
+  navigate("/patient/" + hhNumber + "/uploadrecords");
+};
+
+const grantPermission = () => {
+  navigate("/patient/" + hhNumber + "/grant");
+};
 
   const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
@@ -40,7 +47,7 @@ const PatientDashBoard = () => {
         setContract(contractInstance);
         setPatientPhoneNo(hhNumber);
         try {
-          const result = await contractInstance.methods.getPatientDetails(patientPhoneNo).call();
+          const result = await contractInstance.methods.getPatientDetails(hhNumber).call();
           setPatientDetails(result);
         } catch (error) {
           console.error('Error retrieving patient details:', error);
@@ -58,7 +65,7 @@ const PatientDashBoard = () => {
   return (
     <div>
       <NavBar_Logout />
-      <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-mono text-white h-screen flex flex-col justify-center items-center">
+      <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white h-screen flex flex-col justify-center items-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-6">Patient Dashboard</h2>
         {patientDetails && (
           <p className="text-xl sm:text-2xl mb-24">
@@ -79,7 +86,21 @@ const PatientDashBoard = () => {
           >
             View Record
           </button>
+        <button
+  onClick={uploadRecords}
+  className="my-2 px-4 sm:px-8 py-4 sm:py-5 w-full sm:w-1/4 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
+>
+  Upload Past Records
+</button>
 
+<div className="w-full flex justify-center">
+  <button
+    onClick={grantPermission}
+    className="my-2 px-8 py-4 w-full sm:w-1/4 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
+  >
+    Grant Permission
+  </button>
+</div>
         </div>
       </div>
     </div>

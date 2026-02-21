@@ -49,7 +49,7 @@ const ViewDoctorProfile = () => {
   return (
     <div>
       <NavBar_Logout></NavBar_Logout>
-      <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-mono text-white flex flex-col justify-center items-center">
+      <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white flex flex-col justify-center items-center">
         <div className="h-full max-w-8xl bg-gray-700 p-24 rounded-lg shadow-lg flex flex-col justify-center items-center">
           <h1 className="text-3xl sm:text-4xl font-bold mb-6">
             Doctor's Profile

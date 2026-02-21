@@ -23,6 +23,13 @@ contract PatientRegistration {
     mapping(string => Patient) public patients;
     mapping(string => PatientList[]) private Dpermission;
     mapping(string => mapping(string => bool)) public doctorPermissions;
+    mapping(string => string[]) private medicalRecords;
+    mapping(uint => mapping(uint => bool)) public accessGranted;
+// patientHH => doctorHH => true/false
+
+function grantAccess(uint patientHH, uint doctorHH) public {
+    accessGranted[patientHH][doctorHH] = true;
+}
 
     event PatientRegistered(string hhNumber, string name, address walletAddress);
 
@@ -114,4 +121,18 @@ contract PatientRegistration {
     function getPatientList(string memory _doctorNumber) public view returns (PatientList[] memory) {
         return Dpermission[_doctorNumber];
     }
+    function storeMedicalRecord(
+    string memory _hhNumber,
+    string memory _fileHash
+) public {
+    require(isPatientRegistered[_hhNumber], "Patient not registered");
+    medicalRecords[_hhNumber].push(_fileHash);
+}
+function getMedicalRecords(string memory _hhNumber)
+    public
+    view
+    returns (string[] memory)
+{
+    return medicalRecords[_hhNumber];
+}
 }

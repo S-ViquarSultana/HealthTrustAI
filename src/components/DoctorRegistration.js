@@ -216,7 +216,7 @@ const DoctorRegistry = () => {
   return (
     <div>
     <NavBar></NavBar>
-    <div className="createehr min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-black to-gray-800 font-mono">
+    <div className="createehr min-h-screen flex items-center justify-center p-4 bg-gradient-to-b from-black to-gray-800 font-inter">
       <div className="w-full max-w-2xl">
         <h2 className="text-3xl text-white mb-6 font-bold text-center">
           Doctor Registration

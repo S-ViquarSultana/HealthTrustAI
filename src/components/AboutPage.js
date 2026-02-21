@@ -21,7 +21,7 @@ const AboutUs = () => {
       <div className="flex justify-center items-center h-screen">
         <div className="flex flex-col text-custom-blue space-y-8 w-3/5 p-8 bg-gray-800 shadow-lg rounded-lg transition-transform duration-10000 ease-in-out transform hover:scale-105">
           <div className="space-y-4">
-            <h1 className="text-lg font-mono text-center">About Us</h1> {/* Center align the "About Us" heading */}
+            <h1 className="text-lg font-inter text-center">About Us</h1> {/* Center align the "About Us" heading */}
             <div className="about-content text-left"> {/* Left align the content */}
               <h2>Who We Are</h2>
               <p>

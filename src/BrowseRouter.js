@@ -21,6 +21,8 @@ import ViewProfile from "./components/ViewProfile";
 import ViewDoctorProfile from "./components/ViewDoctorProfile";
 import ViewDiagnosticProfile from "./components/ViewDiagnosticProfile";
 import AboutUs from "./components/AboutPage"; 
+import UploadPastRecords from "./components/UploadPastRecords";
+import GrantPermission from "./components/GrantPermission";
 
 
 
@@ -104,7 +106,14 @@ const BrowseRouter = () => {
           path="/patient/:hhNumber/viewrecords"
           element={<ViewPatientRecords />}
         ></Route>
-        
+        <Route
+          path="/patient/:hhNumber/uploadrecords"
+          element={<UploadPastRecords />}
+        ></Route>
+        <Route 
+        path="/patient/:hhNumber/grant" 
+        element={<GrantPermission />} 
+        ></Route>
         <Route 
         path="/diagnostic/:hhNumber/diagnosticform" 
         element={<DiagnosticForm></DiagnosticForm>}>

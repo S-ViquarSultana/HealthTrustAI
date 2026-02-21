@@ -70,7 +70,7 @@ const DiagnosticLogin = () => {
   return (
     <div>
       <NavBar />
-      <div className="bg-gradient-to-b from-black to-gray-800 min-h-screen flex flex-col justify-center items-center p-4 font-mono text-white">
+      <div className="bg-gradient-to-b from-black to-gray-800 min-h-screen flex flex-col justify-center items-center p-4 font-inter text-white">
         <div className="w-full max-w-4xl bg-gray-900 p-20 rounded-lg shadow-lg">
           <h2 className="text-3xl sm:text-4xl font-bold mb-6">Diagnostic Login</h2>
           <div className="mb-4">

@@ -53,7 +53,7 @@ const DoctorDashBoardPage = () => {
   return (
     <div>
     <NavBar_Logout></NavBar_Logout>
-    <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-mono text-white h-screen flex flex-col justify-center items-center">
+    <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white h-screen flex flex-col justify-center items-center">
       <h2 className="text-3xl sm:text-4xl font-bold mb-6">Doctor Dashboard</h2>
         {doctorDetails && (
           <p className="text-xl sm:text-2xl mb-24">
