@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar_Logout from "./NavBar_Logout";
 import Web3 from "web3";
@@ -7,7 +7,7 @@ import PatientRegistration from "../build/contracts/PatientRegistration.json";
 function GrantPermission() {
   const navigate = useNavigate();
   const { hhNumber } = useParams();
-
+  const [patientName, setPatientName] = useState("");
   const [doctorHH, setDoctorHH] = useState("");
 
   const handleCancel = () => {
@@ -36,10 +36,13 @@ const handleGrant = async () => {
         deployedNetwork.address
       );
 
-      await contract.methods
-        .grantAccess(hhNumber, doctorHH)
-        .send({ from: account });
-
+await contract.methods
+  .grantPermission(
+      hhNumber,        // patient HH (string)
+      doctorHH,        // doctor HH (string)
+      patientName      // you must pass this
+  ) 
+  .send({ from: account });
       alert("Access Granted Successfully!");
 
       navigate("/patient/" + hhNumber);
@@ -52,7 +55,30 @@ const handleGrant = async () => {
     alert("Please install MetaMask");
   }
 };
+useEffect(() => {
+  const loadPatientDetails = async () => {
+    if (window.ethereum) {
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.request({ method: "eth_requestAccounts" });
 
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = PatientRegistration.networks[networkId];
+
+      const contract = new web3.eth.Contract(
+        PatientRegistration.abi,
+        deployedNetwork.address
+      );
+
+      const details = await contract.methods
+        .getPatientDetails(hhNumber)
+        .call();
+
+      setPatientName(details.name);
+    }
+  };
+
+  loadPatientDetails();
+}, []);
   return (
     <div>
       <NavBar_Logout />

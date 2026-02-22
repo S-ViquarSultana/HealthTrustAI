@@ -23,6 +23,8 @@ import ViewDiagnosticProfile from "./components/ViewDiagnosticProfile";
 import AboutUs from "./components/AboutPage"; 
 import UploadPastRecords from "./components/UploadPastRecords";
 import GrantPermission from "./components/GrantPermission";
+import DoctorViewRecords from "./components/DoctorViewRecords";
+import DoctorForm from "./components/DoctorForm";
 
 
 
@@ -81,7 +83,14 @@ const BrowseRouter = () => {
           path="/doctor_login"
           element={<DoctorLogin></DoctorLogin>}
         ></Route>
-      
+        <Route 
+          path="/doctor/:hhNumber/view/:patientHH" 
+          element={<DoctorViewRecords />}
+        ></Route>
+        <Route
+        path="/doctor/:hhNumber/doctorform"
+        element={<DoctorForm />}
+        ></Route>
         <Route
           path="/diagnostic_login"
           element={<DiagnosticLogin></DiagnosticLogin>}

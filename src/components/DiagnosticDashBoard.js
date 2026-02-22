@@ -12,11 +12,13 @@ const DiagnosticDashBoard = () => {
   const [error, setError] = useState(null);
 
   const diagnosticUpload = () => {
-    navigate("/diagnostic/"+hhNumber+"/diagnosticform");
+    navigate(`/diagnostic/${hhNumber}/diagnosticform`, {
+  state: { patientHH: hhNumber }
+});
   };
 
   const viewDiagnosticProfile = () => {
-    navigate("/diagnostic/"+hhNumber+"/viewdiagnosticprofile");
+    navigate(`/diagnostic/${hhNumber}/viewdiagnosticprofile`);
   };
 
   useEffect(() => {

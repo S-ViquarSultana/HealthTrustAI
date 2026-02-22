@@ -24,12 +24,7 @@ contract PatientRegistration {
     mapping(string => PatientList[]) private Dpermission;
     mapping(string => mapping(string => bool)) public doctorPermissions;
     mapping(string => string[]) private medicalRecords;
-    mapping(uint => mapping(uint => bool)) public accessGranted;
-// patientHH => doctorHH => true/false
 
-function grantAccess(uint patientHH, uint doctorHH) public {
-    accessGranted[patientHH][doctorHH] = true;
-}
 
     event PatientRegistered(string hhNumber, string name, address walletAddress);
 

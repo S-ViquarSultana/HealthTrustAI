@@ -1,113 +1,183 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import NavBar_Logout from "./NavBar_Logout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 
-const DoctorViewPatient = () => {
-  const { hhNumber } = useParams(); // Retrieve the hhNumber from the URL parameter
+const DoctorViewRecords = () => {
+  const { hhNumber, patientHH } = useParams(); 
   const navigate = useNavigate();
+  const [records, setRecords] = useState([]);
+  const [showConsultancy, setShowConsultancy] = useState(false);
+  const [recordId, setRecordId] = useState("");
+  const [doctorAddress, setDoctorAddress] = useState("");
+  const [diagnosis, setDiagnosis] = useState("");
+  const [prescription, setPrescription] = useState("");
 
-  const doctorForm = () => {
-    navigate("/doctor/"+hhNumber+"/doctorform");
-  };
-
-  const viewPatientRecords = () => {
-    navigate("/patient/"+hhNumber+"/viewrecords");
-  };
-
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
   const [patientDetails, setPatientDetails] = useState(null);
   const [error, setError] = useState(null);
 
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
-        const web3Instance = new Web3(window.ethereum);
-        setWeb3(web3Instance);
-
-        const networkId = await web3Instance.eth.net.getId();
-        const deployedNetwork = PatientRegistration.networks[networkId];
-        const contractInstance = new web3Instance.eth.Contract(
-          PatientRegistration.abi,
-          deployedNetwork && deployedNetwork.address,
-        );
-        setContract(contractInstance);
         try {
-          const result = await contractInstance.methods.getPatientDetails(hhNumber).call();
+          const web3 = new Web3(window.ethereum);
+          await window.ethereum.request({ method: "eth_requestAccounts" });
+
+          const networkId = await web3.eth.net.getId();
+          const deployedNetwork =
+            PatientRegistration.networks[networkId];
+
+          const contract = new web3.eth.Contract(
+            PatientRegistration.abi,
+            deployedNetwork.address
+          );
+
+          const recordResult = await contract.methods
+  .getMedicalRecords(patientHH)
+  .call();
+
+setRecords(recordResult);
+
+          const result = await contract.methods
+            .getPatientDetails(patientHH)
+            .call();
+
           setPatientDetails(result);
+
         } catch (error) {
-          console.error('Error retrieving patient details:', error);
-          setError('Error retrieving patient details');
+          console.error("Error retrieving patient details:", error);
+          setError("Error retrieving patient details");
         }
       } else {
-        console.log('Please install MetaMask extension');
-        setError('Please install MetaMask extension');
+        setError("Please install MetaMask");
       }
     };
 
     init();
-  }, [hhNumber]);
+  }, [patientHH]);
 
-  const cancelOperation = () => {
-    navigate(-1);
+  const handleViewRecords = () => {
+    navigate(`/patient/${patientHH}/viewrecords`, {
+      state: {
+        fromDoctor: true,
+        doctorHH: hhNumber
+      }
+    });
   };
+
+const doctorForm = () => {
+  navigate(`/doctor/${hhNumber}/doctorform`, {
+    state: {
+      patientHH: patientHH
+    }
+  });
+};
+
+const handleCreateRecord = async () => {
+  if (!diagnosis || !prescription) {
+    alert("Please fill all fields");
+    return;
+  }
+
+  try {
+    const web3 = new Web3(window.ethereum);
+    const accounts = await web3.eth.getAccounts();
+    const account = accounts[0];
+
+    const networkId = await web3.eth.net.getId();
+    const deployedNetwork =
+      PatientRegistration.networks[networkId];
+
+    const contract = new web3.eth.Contract(
+      PatientRegistration.abi,
+      deployedNetwork.address
+    );
+
+    await contract.methods
+      .addMedicalRecord(
+        patientHH,
+        recordId,
+        diagnosis,
+        prescription
+      )
+      .send({ from: account });
+
+    alert("Medical Record Created Successfully!");
+
+    setShowConsultancy(false);
+    setDiagnosis("");
+    setPrescription("");
+
+  } catch (error) {
+    console.error(error);
+    alert("Transaction Failed");
+  }
+};
+
+  const handleClose = () => {
+    navigate(`/doctor/${hhNumber}/patientlist`);
+  };
+
+  if (!patientDetails) {
+    return <div className="text-white text-center mt-10">Loading...</div>;
+  }
 
   return (
     <div>
-    <NavBar_Logout></NavBar_Logout>
-    <div className="bg-b to-gray-500 p-4 sm:p-10 font-inter text-white h-30 flex flex-col justify-center items-center">
-      <h2 className="text-2xl sm:text-4xl font-bold mb-6">Patient's Profile</h2>
-      <br/>
-        {patientDetails && (
-          <center>
-          <p className="text-xl sm:text-3xl mb-20">
-          Name : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.name}</span>{"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-          DOB : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.dateOfBirth}</span>{"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-          Gender : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.gender}</span>
-          <br />
-          <br />
-          BloodGroup : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.bloodGroup}</span>{"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-          Address : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.homeAddress}</span>{"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-            <br></br><br></br>
-          Email-Id : {" "}
-            <span className="font-bold text-yellow-500">{patientDetails.email}</span>
-        </p>
-        </center>
-      )}
-      </div>
-      <div>
-      <center>
-      <button
-            onClick={viewPatientRecords}
-            className="my-2 px-4 sm:px-8 py-4 sm:py-5 w-full sm:w-1/4 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-          >
-            View Record
-          </button>
-          {"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-          <button
-          onClick={doctorForm}
-          className="my-2 px-4 sm:px-8 py-4 sm:py-5 w-full sm:w-1/4 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-          >
-          Prescription Consultancy
-          </button>
-          {"\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0\u00A0"}
-          <button
-            onClick={cancelOperation}
-            className="my-2 px-4 sm:px-8 py-4 sm:py-5 w-full sm:w-1/4 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-          >
-            Close
-          </button>
-        </center>
-      </div>
+      <NavBar_Logout />
+
+      <div className="bg-gradient-to-b from-black to-gray-800 text-white min-h-screen flex flex-col items-center py-10 px-5">
+
+        <h2 className="text-3xl sm:text-4xl font-bold mb-10">
+          Patient's Profile
+        </h2>
+
+        <div className="bg-gray-900 border border-gray-600 rounded-lg p-8 w-full max-w-4xl text-lg space-y-4">
+
+          <div className="flex justify-between">
+            <p>Name : <span className="text-yellow-400">{patientDetails.name}</span></p>
+            <p>DOB : <span className="text-yellow-400">{patientDetails.dateOfBirth}</span></p>
+            <p>Gender : <span className="text-yellow-400">{patientDetails.gender}</span></p>
+          </div>
+
+          <div className="flex justify-between">
+            <p>BloodGroup : <span className="text-yellow-400">{patientDetails.bloodGroup}</span></p>
+            <p>Address : <span className="text-yellow-400">{patientDetails.homeAddress}</span></p>
+          </div>
+
+          <p>Email-Id : <span className="text-yellow-400">{patientDetails.email}</span></p>
+
+        </div>
+
+{records.map((record, index) => (
+  <div key={index} className="mt-4">
+    <button
+      onClick={() => window.open(record, "_blank")}
+      className="bg-blue-500 px-4 py-2 rounded"
+    >
+      View Report {index + 1}
+    </button>
+  </div>
+))}
+
+
+    <button
+      onClick={doctorForm}
+      className="px-8 py-3 rounded-lg bg-teal-500 hover:bg-gray-600"
+    >
+      Prescription Consultancy
+    </button>
+
+    <button
+      onClick={handleClose}
+      className="px-8 py-3 rounded-lg bg-teal-500 hover:bg-gray-600"
+    >
+      Close
+    </button>
+  </div>
       </div>
   );
 };
 
-export default DoctorViewPatient;
+export default DoctorViewRecords;

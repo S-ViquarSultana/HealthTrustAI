@@ -3,6 +3,7 @@ import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar_Logout from "./NavBar_Logout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
+import { useLocation } from "react-router-dom";
 
 function ViewPatientRecords() {
   const navigate = useNavigate();
@@ -11,6 +12,10 @@ function ViewPatientRecords() {
   const [records, setRecords] = useState([]);
   const [contract, setContract] = useState(null);
 
+  const location = useLocation();
+  const fromDoctor = location.state?.fromDoctor;
+  const doctorHH = location.state?.doctorHH;
+  
   useEffect(() => {
     const loadRecords = async () => {
       if (window.ethereum) {
@@ -47,9 +52,13 @@ function ViewPatientRecords() {
     loadRecords();
   }, [hhNumber]);
 
-  const goBack = () => {
-    navigate("/patient/" + hhNumber);
-  };
+ const goBack = () => {
+  if (fromDoctor) {
+    navigate(`/doctor/${doctorHH}/view/${hhNumber}`);
+  } else {
+    navigate(`/patient/${hhNumber}`);
+  }
+};
 
   const handleView = (hash) => {
     alert("File hash stored on blockchain:\n\n" + hash);
