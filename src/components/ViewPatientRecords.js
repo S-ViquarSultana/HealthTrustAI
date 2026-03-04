@@ -60,9 +60,10 @@ function ViewPatientRecords() {
   }
 };
 
-  const handleView = (hash) => {
-    alert("File hash stored on blockchain:\n\n" + hash);
-  };
+const handleView = (cid) => {
+  const url = `https://gateway.pinata.cloud/ipfs/${cid}`;
+  window.open(url, "_blank");
+};
 
   return (
     <div>
@@ -89,6 +90,7 @@ function ViewPatientRecords() {
         ) : (
           <div className="w-full max-w-4xl space-y-6">
             {records.map((record, index) => (
+              console.log("PDF record:", record),
               <div
                 key={index}
                 className="border border-gray-600 rounded-lg p-4 flex justify-between items-center bg-gray-900"

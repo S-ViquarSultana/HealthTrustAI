@@ -13,7 +13,7 @@ const DoctorViewRecords = () => {
   const [doctorAddress, setDoctorAddress] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
   const [prescription, setPrescription] = useState("");
-
+  const [consultancyRecords, setConsultancyRecords] = useState([]);
   const [patientDetails, setPatientDetails] = useState(null);
   const [error, setError] = useState(null);
 
@@ -38,6 +38,12 @@ const DoctorViewRecords = () => {
   .call();
 
 setRecords(recordResult);
+
+const consultancyResult = await contract.methods
+  .getConsultancyRecords(patientHH)
+  .call();
+
+setConsultancyRecords(consultancyResult);
 
           const result = await contract.methods
             .getPatientDetails(patientHH)
@@ -95,13 +101,13 @@ const handleCreateRecord = async () => {
     );
 
     await contract.methods
-      .addMedicalRecord(
-        patientHH,
-        recordId,
-        diagnosis,
-        prescription
-      )
-      .send({ from: account });
+  .addConsultancyRecord(
+    patientHH,
+    recordId,
+    diagnosis,
+    prescription
+  )
+  .send({ from: account });
 
     alert("Medical Record Created Successfully!");
 
@@ -153,7 +159,10 @@ const handleCreateRecord = async () => {
 {records.map((record, index) => (
   <div key={index} className="mt-4">
     <button
-      onClick={() => window.open(record, "_blank")}
+      onClick={() =>
+  window.open(`https://gateway.pinata.cloud/ipfs/${record}`, "_blank")
+}
+
       className="bg-blue-500 px-4 py-2 rounded"
     >
       View Report {index + 1}
@@ -161,6 +170,15 @@ const handleCreateRecord = async () => {
   </div>
 ))}
 
+{consultancyRecords.map((record, index) => (
+  <div key={index} className="mt-4 bg-gray-800 p-4 rounded">
+    <p className="text-yellow-400">
+      Consultancy Record ID: {record.recordId}
+    </p>
+    <p>Diagnosis: {record.diagnosis}</p>
+    <p>Prescription: {record.prescription}</p>
+  </div>
+))}
 
     <button
       onClick={doctorForm}

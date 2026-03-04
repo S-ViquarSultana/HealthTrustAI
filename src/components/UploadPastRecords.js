@@ -41,14 +41,6 @@ const UploadPastRecords = () => {
     init();
   }, []);
 
-  // SHA-256 hashing
-  const generateFileHash = async (file) => {
-    const buffer = await file.arrayBuffer();
-    const hashBuffer = await crypto.subtle.digest("SHA-256", buffer);
-    const hashArray = Array.from(new Uint8Array(hashBuffer));
-    const hashHex = hashArray.map(b => b.toString(16).padStart(2, "0")).join("");
-    return hashHex;
-  };
 
   const handleSubmit = async () => {
     if (!selectedFile) {
@@ -59,12 +51,25 @@ const UploadPastRecords = () => {
     try {
       setIsLoading(true);
 
-      const fileHash = await generateFileHash(selectedFile);
+      // Send file to backend
+const formData = new FormData();
+formData.append("file", selectedFile);
 
-      // 👇 THIS will trigger MetaMask transaction popup
-      await contract.methods
-        .storeMedicalRecord(hhNumber, fileHash)
-        .send({ from: account });
+const response = await fetch("http://localhost:5000/upload", {
+  method: "POST",
+  body: formData,
+});
+
+const data = await response.json();
+
+console.log("CID from backend:", data.cid);
+
+const cid = data.cid;
+
+// Store CID in blockchain
+await contract.methods
+  .storeMedicalRecord(hhNumber, cid)
+  .send({ from: account });
 
       alert("Record uploaded successfully!");
 

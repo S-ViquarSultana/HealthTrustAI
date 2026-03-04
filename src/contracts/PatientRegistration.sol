@@ -130,4 +130,30 @@ function getMedicalRecords(string memory _hhNumber)
 {
     return medicalRecords[_hhNumber];
 }
+struct ConsultancyRecord {
+    string recordId;
+    string diagnosis;
+    string prescription;
+}
+
+mapping(string => ConsultancyRecord[]) private consultancyRecords;
+
+function addConsultancyRecord(
+    string memory _hhNumber,
+    string memory _recordId,
+    string memory _diagnosis,
+    string memory _prescription
+) public {
+    consultancyRecords[_hhNumber].push(
+        ConsultancyRecord(_recordId, _diagnosis, _prescription)
+    );
+}
+
+function getConsultancyRecords(string memory _hhNumber)
+    public
+    view
+    returns (ConsultancyRecord[] memory)
+{
+    return consultancyRecords[_hhNumber];
+}
 }
