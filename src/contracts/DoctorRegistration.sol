@@ -102,17 +102,23 @@ contract DoctorRegistration {
     }
 
     function grantPermission(
-        string memory _patientNumber,
-        string memory _doctorNumber,
-        string memory _patientName
-    ) external {
-            PatientList memory newRecord = PatientList(
-                _patientNumber,
-                _patientName
-            );
-            Dpermission[_doctorNumber].push(newRecord);
-        doctorPermissions[_patientNumber][_doctorNumber] = true;
+    string memory _patientNumber,
+    string memory _doctorNumber,
+    string memory _patientName
+) external {
+
+    if(!doctorPermissions[_patientNumber][_doctorNumber]) {
+
+        PatientList memory newRecord = PatientList(
+            _patientNumber,
+            _patientName
+        );
+
+        Dpermission[_doctorNumber].push(newRecord);
     }
+
+    doctorPermissions[_patientNumber][_doctorNumber] = true;
+}
 
     function isPermissionGranted(string memory _patientNumber,string memory _doctorNumber) external view returns (bool) {
         return doctorPermissions[_patientNumber][_doctorNumber];

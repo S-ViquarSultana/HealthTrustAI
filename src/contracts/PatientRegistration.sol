@@ -156,4 +156,24 @@ function getConsultancyRecords(string memory _hhNumber)
 {
     return consultancyRecords[_hhNumber];
 }
+
+function revokePermission(string memory _patientNumber, string memory _doctorNumber) public {
+    doctorPermissions[_patientNumber][_doctorNumber] = false;
+
+    for (uint i = 0; i < Dpermission[_doctorNumber].length; i++) {
+
+        if (
+            keccak256(abi.encodePacked(Dpermission[_doctorNumber][i].patient_number)) ==
+            keccak256(abi.encodePacked(_patientNumber))
+        ) {
+
+            for (uint j = i; j < Dpermission[_doctorNumber].length - 1; j++) {
+                Dpermission[_doctorNumber][j] = Dpermission[_doctorNumber][j + 1];
+            }
+
+            Dpermission[_doctorNumber].pop();
+            break;
+        }
+    }
+}
 }

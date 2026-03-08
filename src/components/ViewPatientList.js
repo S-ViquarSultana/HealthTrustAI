@@ -3,6 +3,8 @@ import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBar_Logout from "./NavBar_Logout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
+import DoctorRegistration from "../build/contracts/DoctorRegistration.json";
+
 
 function ViewPatientList() {
   const navigate = useNavigate();
@@ -48,43 +50,57 @@ function ViewPatientList() {
       }
     }
   };
-
+  
   const handleView = (patientHH) => {
     navigate(`/doctor/${hhNumber}/view/${patientHH}`);
   };
 
   const handleRemove = async (patientHH) => {
-    if (window.ethereum) {
-      try {
-        const web3 = new Web3(window.ethereum);
-        await window.ethereum.request({ method: "eth_requestAccounts" });
+  if (window.ethereum) {
+    try {
 
-        const accounts = await web3.eth.getAccounts();
-        const account = accounts[0];
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.request({ method: "eth_requestAccounts" });
 
-        const networkId = await web3.eth.net.getId();
-        const deployedNetwork =
-          PatientRegistration.networks[networkId];
+      const accounts = await web3.eth.getAccounts();
+      const account = accounts[0];
 
-        const contract = new web3.eth.Contract(
-          PatientRegistration.abi,
-          deployedNetwork.address
-        );
+      const networkId = await web3.eth.net.getId();
 
-        await contract.methods
-          .revokePermission(patientHH, hhNumber)
-          .send({ from: account });
+      const doctorNetwork = DoctorRegistration.networks[networkId];
+      const patientNetwork = PatientRegistration.networks[networkId];
 
-        alert("Access Revoked Successfully!");
-        loadPatients();
+      const doctorContract = new web3.eth.Contract(
+        DoctorRegistration.abi,
+        doctorNetwork.address
+      );
 
-      } catch (error) {
-        console.error(error);
-        alert("Transaction Failed");
-      }
+      const patientContract = new web3.eth.Contract(
+        PatientRegistration.abi,
+        patientNetwork.address
+      );
+
+      // revoke in doctor contract
+      await doctorContract.methods
+        .revokePermission(patientHH, hhNumber)
+        .send({ from: account });
+
+      // revoke in patient contract
+      await patientContract.methods
+        .revokePermission(patientHH, hhNumber)
+        .send({ from: account });
+
+      alert("Access Revoked Successfully!");
+      setPatients(prev => 
+        prev.filter(p => p.patient_number !== patientHH)
+      );
+
+    } catch (error) {
+      console.error(error);
+      alert("Transaction Failed");
     }
-  };
-
+  }
+};
   const goBack = () => {
     navigate("/doctor/" + hhNumber);
   };
@@ -118,20 +134,22 @@ function ViewPatientList() {
                   </p>
                 </div>
 
-                <div className="flex gap-4">
-                  <button
-                    onClick={() => handleView(patient.patient_number)}
-                    className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-                  >
-                    View
-                  </button>
+              <div className="flex gap-4">
 
-                  <button
-                    onClick={() => handleRemove(patient.patient_number)}
-                    className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-                  >
-                    Remove
-                  </button>
+  <button
+    onClick={() => handleView(patient.patient_number)}
+    className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
+  >
+    View
+  </button>
+
+  <button
+    onClick={() => handleRemove(patient.patient_number)}
+    className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
+  >
+    Remove
+  </button>
+
                 </div>
               </div>
             ))}

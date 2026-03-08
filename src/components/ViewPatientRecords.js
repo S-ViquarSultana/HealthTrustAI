@@ -65,6 +65,22 @@ const handleView = (cid) => {
   window.open(url, "_blank");
 };
 
+
+  //// --- AI ANALYSIS ADDITION START ---
+const handleAIAnalysis = (patientHH) => {
+  try {
+    // Temporary placeholder AI app URL
+    // Replace this later with your friend's deployed frontend
+    const aiAppUrl = `https://example-ai-app.com?patient=${encodeURIComponent(patientHH)}`;
+
+    window.open(aiAppUrl, "_blank");
+
+  } catch (error) {
+    console.error("Error opening AI analysis:", error);
+    alert("Unable to open AI analysis");
+  }
+};
+//// --- AI ANALYSIS ADDITION END ---
   return (
     <div>
       <NavBar_Logout />
@@ -104,12 +120,23 @@ const handleView = (cid) => {
                   </p>
                 </div>
 
-                <button
-                  onClick={() => handleView(record)}
-                  className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600 transition-colors duration-300"
-                >
-                  View
-                </button>
+               <div className="flex gap-3">
+
+<button
+ onClick={() => handleView(record)}
+ className="px-6 py-2 rounded-lg bg-teal-500 hover:bg-gray-600"
+>
+ View
+</button>
+
+<button
+ onClick={() => handleAIAnalysis(record)}
+ className="px-6 py-2 rounded-lg bg-purple-500 hover:bg-gray-600"
+>
+ AI Analysis
+</button>
+
+</div>
               </div>
             ))}
 

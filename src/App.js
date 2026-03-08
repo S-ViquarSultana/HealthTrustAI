@@ -1,4 +1,5 @@
 import BrowseRouter from "./BrowseRouter";
+import ChatbotButton from "./components/ChatbotButton"; 
 
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -13,6 +14,7 @@ function App() {
   return (
     <div>
       <BrowseRouter></BrowseRouter>
+      <ChatbotButton></ChatbotButton>
     </div>
   );
 }
