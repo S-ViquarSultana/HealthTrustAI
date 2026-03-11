@@ -10,8 +10,6 @@ const PatientLogin = () => {
   const [hhNumberError, sethhNumberError] = useState("");
   const [hhNumber, sethhNumber] = useState("");
   const [password, setPassword] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
-  const [doctorDetails, setPatientDetails] = useState(null);
 
   const handlehhNumberChange = (e) => {
     const inputhhNumber = e.target.value;

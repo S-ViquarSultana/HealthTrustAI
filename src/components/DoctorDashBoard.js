@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useParams, Link, useNavigate } from "react-router-dom";
-import NavBar_Logout from "./NavBar_Logout";
+import NavbarLogout from "./NavBarLogout";
 import DoctorRegistration from "../build/contracts/DoctorRegistration.json";
 
 const DoctorDashBoardPage = () => {
@@ -52,7 +52,7 @@ const DoctorDashBoardPage = () => {
 
   return (
     <div>
-    <NavBar_Logout></NavBar_Logout>
+    <NavbarLogout></NavbarLogout>
     <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white h-screen flex flex-col justify-center items-center">
       <h2 className="text-3xl sm:text-4xl font-bold mb-6">Doctor Dashboard</h2>
         {doctorDetails && (

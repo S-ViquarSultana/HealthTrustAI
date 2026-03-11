@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
-import NavBar_Logout from "./NavBar_Logout";
+import NavbarLogout from "./NavBarLogout";
 
 const UploadPastRecords = () => {
   const { hhNumber } = useParams();
   const navigate = useNavigate();
 
-  const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [account, setAccount] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
@@ -89,7 +88,7 @@ await contract.methods
 
   return (
     <div>
-      <NavBar_Logout />
+      <NavbarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 text-white h-screen flex flex-col justify-center items-center font-inter">
 
         <h2 className="text-3xl sm:text-4xl font-bold mb-10">

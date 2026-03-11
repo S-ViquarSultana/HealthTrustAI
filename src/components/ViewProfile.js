@@ -4,17 +4,15 @@ import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import "../CSS/PatientWritePermission.css";
 import "../big_css/CreateEHR.css";
-import NavBar_Logout from "./NavBar_Logout";
+import NavBarLogout from "./NavBarLogout";
 
 
 const ViewProfile = () => {
   const { hhNumber } = useParams(); // Retrieve the hhNumber from the URL parameter
   const navigate = useNavigate();
-  const [address, setAddress] = useState(null);
-  const [web3, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [patientDetails, setPatientDetails] = useState(null);
-  const [error, setError] = useState(null);
+ 
 
   useEffect(() => {
     const init = async () => {
@@ -77,7 +75,7 @@ const ViewProfile = () => {
   
   return (
     <div>
-    <NavBar_Logout></NavBar_Logout>
+    <NavbarLogout></NavbarLogout>
     <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white flex flex-col justify-center items-center">
         <div className="h-full max-w-8xl bg-gray-700 p-24 rounded-lg shadow-lg flex flex-col justify-center items-center">
 

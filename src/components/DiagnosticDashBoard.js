@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useParams, useNavigate } from "react-router-dom";
-import NavBar_Logout from "./NavBar_Logout";
+import NavbarLogout from "./NavBarLogout";
 import DiagnosticRegistration from "../build/contracts/DiagnosticRegistration.json";
 
 const DiagnosticDashBoard = () => {
@@ -53,7 +53,7 @@ const DiagnosticDashBoard = () => {
 
   return (
     <div>
-      <NavBar_Logout />
+      <NavbarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white h-screen flex flex-col justify-center items-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-6">Diagnostic Dashboard</h2>
         {diagnosticDetails && (
