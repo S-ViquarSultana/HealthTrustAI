@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 
 const UploadPastRecords = () => {
   const { hhNumber } = useParams();
@@ -12,7 +12,8 @@ const UploadPastRecords = () => {
   const [account, setAccount] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-
+  const [web3, setWeb3] = useState(null);
+  
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
@@ -88,7 +89,7 @@ await contract.methods
 
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 text-white h-screen flex flex-col justify-center items-center font-inter">
 
         <h2 className="text-3xl sm:text-4xl font-bold mb-10">

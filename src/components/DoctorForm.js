@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useParams, useLocation, useNavigate } from "react-router-dom";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 
 const DoctorForm = () => {
@@ -110,7 +110,7 @@ await contract.methods
 
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
 
       <div className="bg-gradient-to-b from-black to-gray-800 text-white min-h-screen flex flex-col items-center py-10">
 

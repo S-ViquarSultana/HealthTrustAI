@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
 import { useNavigate, useParams, useLocation } from "react-router-dom";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 
 function ViewPatientRecords() {
@@ -70,7 +70,7 @@ function ViewPatientRecords() {
 
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
 
       <div className="bg-gradient-to-b from-black to-gray-800 text-white min-h-screen flex flex-col items-center font-inter py-10 px-5">
         <h2 className="text-3xl sm:text-4xl font-bold mb-10">

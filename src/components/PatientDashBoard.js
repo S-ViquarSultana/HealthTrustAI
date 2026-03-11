@@ -2,13 +2,16 @@ import React, { useEffect, useState } from "react";
 import Web3 from "web3";
 import { useParams, useNavigate } from "react-router-dom";
 import "../CSS/PatientDashBoard.css";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 
 const PatientDashBoard = () => {
   const { hhNumber } = useParams(); // Retrieve the hhNumber from the URL parameter
 
   const navigate = useNavigate();
+  const [web3, setWeb3] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [error, setError] = useState("");
   
   const viewRecord = () => {
     navigate("/patient/" + hhNumber + "/viewrecords");
@@ -62,7 +65,7 @@ const grantPermission = () => {
 
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white h-screen flex flex-col justify-center items-center">
         <h2 className="text-3xl sm:text-4xl font-bold mb-6">Patient Dashboard</h2>
         {patientDetails && (

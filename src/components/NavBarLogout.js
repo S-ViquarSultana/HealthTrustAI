@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import logo from "./logo_new.png";
 
-const NavbarLogout = () => {
+const NavBarLogout = () => {
   const navigate = useNavigate();
 
   return (

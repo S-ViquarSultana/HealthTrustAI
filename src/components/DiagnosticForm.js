@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 import Web3 from "web3";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 import { useNavigate } from "react-router-dom";
@@ -76,7 +76,7 @@ function DiagnosticForm() {
 
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 min-h-screen flex justify-center items-center text-white">
 
         <div className="bg-gray-900 p-8 rounded-lg shadow-lg w-[600px]">

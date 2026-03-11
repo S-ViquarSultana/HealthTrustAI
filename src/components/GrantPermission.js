@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import NavbarLogout from "./NavBarLogout";
+import NavBarLogout from "./NavBarLogout";
 import Web3 from "web3";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 
@@ -81,7 +81,7 @@ useEffect(() => {
 }, []);
   return (
     <div>
-      <NavbarLogout />
+      <NavBarLogout />
       <div className="bg-gradient-to-b from-black to-gray-800 text-white min-h-screen flex flex-col items-center justify-center font-inter px-6">
 
         {/* Title */}

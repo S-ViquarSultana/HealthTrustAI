@@ -12,8 +12,9 @@ const ViewProfile = () => {
   const navigate = useNavigate();
   const [contract, setContract] = useState(null);
   const [patientDetails, setPatientDetails] = useState(null);
- 
-
+  const [error, setError] = useState(null);
+  const [web3, setWeb3] = useState(null);
+  
   useEffect(() => {
     const init = async () => {
       // Check if Web3 is injected by MetaMask or any other provider
@@ -75,7 +76,7 @@ const ViewProfile = () => {
   
   return (
     <div>
-    <NavbarLogout></NavbarLogout>
+    <NavBarLogout></NavBarLogout>
     <div className="bg-gradient-to-b from-black to-gray-800 p-4 sm:p-10 font-inter text-white flex flex-col justify-center items-center">
         <div className="h-full max-w-8xl bg-gray-700 p-24 rounded-lg shadow-lg flex flex-col justify-center items-center">
 
