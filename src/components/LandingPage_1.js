@@ -58,7 +58,7 @@ function LandingPage() {
            <div className="flex flex-col justify-center text-custom-blue w-2/5 h-[450px] p-6 bg-gray-800 shadow-lg ml-4 rounded-lg overflow-hidden">
             <div className="space-y-4">
               <p className="text-lg leading-relaxed font-poppins max-w-prose">
-              The Smart & Secure Electronic Health Records App is revolutionizing EHR management by leveraging blockchain technology. Utilizing key components such as blockchain for secure and transparent data storage, Ganache for rapid development, Metamask for seamless blockchain interaction, and IPFS desktop for decentralized file storage, It ensures enhanced security, improved accessibility, data interoperability, and trust. By adopting this innovative approach, It aims to transform healthcare data management, leading to better patient outcomes and improved healthcare delivery.
+              The Smart & Secure Electronic Health Records App is revolutionizing EHR management by leveraging blockchain technology. Utilizing key components such as blockchain for secure and transparent data storage, Ganache for rapid development, Metamask for seamless blockchain interaction, and Pinata for decentralized file storage, It ensures enhanced security, improved accessibility, data interoperability, and trust. By adopting this innovative approach, It aims to transform healthcare data management, leading to better patient outcomes and improved healthcare delivery.
                 </p>
             </div>
           </div>
