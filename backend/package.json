@@ -1,15 +1,17 @@
 {
   "name": "backend",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
+  "type": "commonjs",
+
+  "engines": {
+    "node": ">=18.0.0 <19.0.0"
+  },
+
   "scripts": {
     "start": "node server.js"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
+
   "dependencies": {
     "@pinata/sdk": "^2.1.0",
     "axios": "^1.13.5",
