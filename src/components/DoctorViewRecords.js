@@ -9,7 +9,7 @@ const DoctorViewRecords = () => {
   const navigate = useNavigate();
   const [records, setRecords] = useState([]);
   const [, setShowConsultancy] = useState(false);
-  const [recordId, setRecordId] = useState("");
+  const [recordId, ] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
   const [prescription, setPrescription] = useState("");
   const [consultancyRecords, setConsultancyRecords] = useState([]);

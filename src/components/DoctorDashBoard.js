@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import Web3 from "web3";
-import { useParams, Link, useNavigate } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import NavBarLogout from "./NavBarLogout";
 import DoctorRegistration from "../build/contracts/DoctorRegistration.json";
 
