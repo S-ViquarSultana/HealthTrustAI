@@ -14,7 +14,7 @@ import DiagnosticForm from "./components/DiagnosticForm";
 import DoctorRegistry from "./components/DoctorRegistration";
 import DiagnosticRegistry from "./components/DiagnosticsRegistration";
 import Footer from "./components/Footer";
-import LandingPage_1 from "./components/LandingPage_1";
+import LandingPage from "./components/LandingPage";
 import ViewPatientRecords from "./components/ViewPatientRecords";
 import ViewPatientList from "./components/ViewPatientList";
 import ViewProfile from "./components/ViewProfile";
@@ -29,11 +29,8 @@ import DoctorForm from "./components/DoctorForm";
 
 
 const BrowseRouter = () => {
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [accounts, setAccounts] = useState([]);
-  const [loggedInPatient, setLoggedInPatient] = useState(false);
-
+  const [, setWeb3] = useState(null);
+  const [, setAccounts] = useState([]);
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
@@ -60,7 +57,7 @@ const BrowseRouter = () => {
       <Routes>
       <Route path="/AboutPage" element={<AboutUs></AboutUs>}></Route>
 
-        <Route path="/" element={<LandingPage_1></LandingPage_1>}></Route>
+        <Route path="/" element={<LandingPage></LandingPage>}></Route>
         <Route path="/register" element={<RegisterPage></RegisterPage>}></Route>
         
         <Route

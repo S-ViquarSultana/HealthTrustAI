@@ -8,14 +8,13 @@ const DoctorViewRecords = () => {
   const { hhNumber, patientHH } = useParams(); 
   const navigate = useNavigate();
   const [records, setRecords] = useState([]);
-  const [showConsultancy, setShowConsultancy] = useState(false);
+  const [, setShowConsultancy] = useState(false);
   const [recordId, setRecordId] = useState("");
-  const [doctorAddress, setDoctorAddress] = useState("");
   const [diagnosis, setDiagnosis] = useState("");
   const [prescription, setPrescription] = useState("");
   const [consultancyRecords, setConsultancyRecords] = useState([]);
   const [patientDetails, setPatientDetails] = useState(null);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     const init = async () => {

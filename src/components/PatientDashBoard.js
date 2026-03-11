@@ -9,9 +9,9 @@ const PatientDashBoard = () => {
   const { hhNumber } = useParams(); // Retrieve the hhNumber from the URL parameter
 
   const navigate = useNavigate();
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
-  const [error, setError] = useState("");
+  const [, setWeb3] = useState(null);
+  const [, setContract] = useState(null);
+  const [, setError] = useState("");
   
   const viewRecord = () => {
     navigate("/patient/" + hhNumber + "/viewrecords");

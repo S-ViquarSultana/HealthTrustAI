@@ -10,7 +10,7 @@ const ViewDiagnosticProfile = () => {
   const { hhNumber } = useParams();
   const navigate = useNavigate();
   const [diagnosticDetails, setDiagnosticDetails] = useState(null);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   useEffect(() => {
     const fetchDiagnosticDetails = async () => {

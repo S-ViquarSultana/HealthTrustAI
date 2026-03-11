@@ -10,13 +10,12 @@ function DiagnosticForm() {
   const [recordId] = useState(
     "EHR-" + Math.random().toString(36).substring(2, 10)
   );
-  const [doctorName, setDoctorName] = useState("");
-  const [patientName, setPatientName] = useState("");
-  const [age, setAge] = useState("");
-  const [gender, setGender] = useState("");
-  const [bloodGroup, setBloodGroup] = useState("");
-  const [patientWallet, setPatientWallet] = useState("");
-  const [diagnosticWallet, setDiagnosticWallet] = useState("");
+  const [, setDoctorName] = useState("");
+  const [, setPatientName] = useState("");
+  const [, setAge] = useState("");
+  const [, setGender] = useState("");
+  const [, setBloodGroup] = useState("");
+  const [, setDiagnosticWallet] = useState("");
   const [file, setFile] = useState(null);
 
  const handleUpload = async () => {

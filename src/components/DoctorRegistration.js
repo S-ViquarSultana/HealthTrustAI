@@ -6,8 +6,8 @@ import "../CSS/DoctorRegistration.css";
 import NavBar from "./NavBar";
 
 const DoctorRegistry = () => {
-  const [web3, setWeb3] = useState(null);
-  const [contract, setContract] = useState(null);
+  const [, setWeb3] = useState(null);
+  const [, setContract] = useState(null);
   const [doctorAddress, setDoctorAddress] = useState("");
   const [doctorName, setDoctorName] = useState("");
   const [hospitalName, setHospitalName] = useState("");

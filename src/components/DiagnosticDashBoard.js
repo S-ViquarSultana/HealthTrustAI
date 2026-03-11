@@ -7,9 +7,9 @@ import DiagnosticRegistration from "../build/contracts/DiagnosticRegistration.js
 const DiagnosticDashBoard = () => {
   const { hhNumber } = useParams();
   const navigate = useNavigate();
-  const [contract, setContract] = useState(null);
+  const [, setContract] = useState(null);
   const [diagnosticDetails, setDiagnosticDetails] = useState(null);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   const diagnosticUpload = () => {
     navigate(`/diagnostic/${hhNumber}/diagnosticform`, {

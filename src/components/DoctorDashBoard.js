@@ -7,9 +7,9 @@ import DoctorRegistration from "../build/contracts/DoctorRegistration.json";
 const DoctorDashBoardPage = () => {
   const { hhNumber } = useParams();
   const navigate = useNavigate();
-  const [contract, setContract] = useState(null);
+  const [, setContract] = useState(null);
   const [doctorDetails, setDoctorDetails] = useState(null);
-  const [error, setError] = useState(null);
+  const [, setError] = useState(null);
 
   
   const viewPatientList = () => {

@@ -12,9 +12,9 @@ const ViewProfile = () => {
   const navigate = useNavigate();
   const [contract, setContract] = useState(null);
   const [patientDetails, setPatientDetails] = useState(null);
-  const [error, setError] = useState(null);
-  const [web3, setWeb3] = useState(null);
-  
+  const [, setError] = useState(null);
+  const [, setWeb3] = useState(null);
+
   useEffect(() => {
     const init = async () => {
       // Check if Web3 is injected by MetaMask or any other provider

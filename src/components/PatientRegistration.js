@@ -6,17 +6,16 @@ import "../CSS/PatientRegistration.css";
 import NavBar from "./NavBar";
 
 const PatientRegistry = () => {
-  const [web3, setWeb3] = useState(null);
+  const [, setWeb3] = useState(null);
   const [contract, setContract] = useState(null);
   const [name, setName] = useState("");
-  const [isRegistered, setIsRegistered] = useState(false);
   const [dateOfBirth, setDateOfBirth] = useState("");
   const [homeAddress, setHomeAddress] = useState("");
   const [hhNumber, sethhNumber] = useState("");
   const [hhNumberError, sethhNumberError] = useState("");
   const [walletAddress, setWalletAddress] = useState("");
   const [gender, setGender] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, ] = useState(false);
   const [bg, setBloodGroup] = useState("");
   const [email, setEmail] = useState(""); 
   const [emailError, setEmailError] = useState("");

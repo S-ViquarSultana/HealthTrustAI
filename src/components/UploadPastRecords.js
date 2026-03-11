@@ -12,8 +12,8 @@ const UploadPastRecords = () => {
   const [account, setAccount] = useState("");
   const [selectedFile, setSelectedFile] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
-  const [web3, setWeb3] = useState(null);
-  
+  const [, setWeb3] = useState(null);
+
   useEffect(() => {
     const init = async () => {
       if (window.ethereum) {
