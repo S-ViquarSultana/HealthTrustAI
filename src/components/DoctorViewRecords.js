@@ -157,16 +157,26 @@ const handleCreateRecord = async () => {
         </div>
 
 {records.map((record, index) => (
-  <div key={index} className="mt-4">
+  <div key={index} className="mt-4 flex gap-3">
+
     <button
       onClick={() =>
-  window.open(`https://gateway.pinata.cloud/ipfs/${record}`, "_blank")
-}
-
+        window.open(`https://gateway.pinata.cloud/ipfs/${record}`, "_blank")
+      }
       className="bg-blue-500 px-4 py-2 rounded"
     >
       View Report {index + 1}
     </button>
+
+    <button
+      onClick={() =>
+        window.open("https://healthtrustai.onrender.com/", "_blank")
+      }
+      className="bg-purple-500 px-4 py-2 rounded"
+    >
+      View AI Analysis
+    </button>
+
   </div>
 ))}
 

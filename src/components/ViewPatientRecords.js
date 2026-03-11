@@ -67,19 +67,10 @@ const handleView = (cid) => {
 
 
   //// --- AI ANALYSIS ADDITION START ---
-const handleAIAnalysis = (patientHH) => {
-  try {
-    // Temporary placeholder AI app URL
-    // Replace this later with your friend's deployed frontend
-    const aiAppUrl = `https://example-ai-app.com?patient=${encodeURIComponent(patientHH)}`;
-
-    window.open(aiAppUrl, "_blank");
-
-  } catch (error) {
-    console.error("Error opening AI analysis:", error);
-    alert("Unable to open AI analysis");
-  }
+const handleAIAnalysis = () => {
+  window.open("https://healthtrustai.onrender.com/", "_blank");
 };
+
 //// --- AI ANALYSIS ADDITION END ---
   return (
     <div>
