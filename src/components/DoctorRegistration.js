@@ -388,6 +388,7 @@ const DoctorRegistry = () => {
               <option value="Ophthalmology">Ophthalmology</option>
               <option value="Psychiatry">Psychiatry</option>
               <option value="Radiology">Radiology</option>
+              <option value="Pathology">Pathology</option>
               <option value="Other">Other</option>
             </select>
             {specialization === "Other" && (
