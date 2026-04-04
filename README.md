@@ -1,134 +1,240 @@
-Summary : The "Smart & Secure Electronic Health Records" project utilizes Ethereum blockchain, Metamask, and Ganache to enable patients to securely upload medical data and also view his data, manage doctor access, and view data history. Doctors can manage patient lists, access records, generate consultancy reports, and revoke access given by patient. Diagnostic centers can create EHR reports, ensuring visibility for both patients and doctors through IPFS integration. This decentralized approach enhances data security, interoperability, and patient control over health information, ultimately improving healthcare delivery and patient outcomes.
+# 🏥 **HealthTrustAI – Secure & Intelligent Electronic Health Records System**
 
-Technology Used :
+## 🔹 **Project Overview**
 
-Blockchain Technology: Ethereum<br>
-Blockchain Development Tools: Metamask, Ganache<br>
-Decentralized File Storage: IPFS (InterPlanetary File System)<br>
-Smart Contract Development: Solidity<br>
-Frontend Development: ReactJS<br>
-Testing Frameworks: Truffle (for testing Solidity contracts)<br>
-Version Control: Git<br>
-Development Environment: Node.js<br>
+**HealthTrustAI** is a decentralized and AI-powered Electronic Health Records (EHR) system designed to securely manage patient medical data while enabling intelligent healthcare insights.
 
-Demo Video : https://www.youtube.com/watch?v=3W5-6diqvV0
+The system integrates **blockchain technology, IPFS-based storage, and machine learning models** to ensure data security, transparency, and predictive healthcare support.
 
-Screenshots : 
+Patients can securely upload and manage their medical records, grant or revoke access to doctors, and receive AI-based health predictions. Doctors can access patient data only after consent and provide consultancy records. The system also includes an AI chatbot to assist users in understanding medical information.
 
-HomePage :
-<img width="1403" alt="Screenshot 2024-05-26 at 9 45 21 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/2ba73782-e348-45f3-94fd-a3a7ba52db5c">
+This approach enhances:
 
-<img width="930" alt="Screenshot 2024-05-26 at 9 52 13 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/ae69f2bf-c90f-470d-8b79-ceae8fd99c39">
+* 🔐 Data security and integrity
+* 👤 Patient-controlled access
+* 📊 AI-driven health insights
+* 🌐 Decentralized data storage
 
-<img width="953" alt="Screenshot 2024-05-26 at 9 54 02 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/fc3cc94b-479e-48a0-a5e3-6019c39320cc">
+---
 
-<img width="711" alt="Screenshot 2024-05-26 at 9 56 29 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/8d4e5c04-f277-441e-bf6f-02bcc968580d">
+## ⚙️ **Technology Stack**
 
+### 🔸 **Blockchain & Web3**
 
+* Ethereum
+* Solidity (Smart Contracts)
+* MetaMask (Wallet Authentication)
+* Web3.js
 
+### 🔸 **Decentralized Storage**
 
-Login :
+* IPFS (via Pinata)
 
-<img width="778" alt="Screenshot 2024-05-26 at 9 57 41 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/0cadee31-7af2-4fdf-a3bb-af8ac937534e">
-<br>
-<br><br>
-Patient Side : 
-<br>
-<br><br>
+### 🔸 **Frontend**
 
-<img width="1228" alt="Screenshot 2024-05-26 at 10 07 59 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/64b725c9-061f-4cea-a630-1602666dd374">
+* React.js
+* Tailwind CSS
 
-<img width="1139" alt="Screenshot 2024-05-26 at 10 07 11 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/ce4e1dd6-e2bd-48f9-b185-0350a2fa53ae">
+### 🔸 **Backend**
 
-<img width="1392" alt="Screenshot 2024-05-26 at 10 08 20 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/8801fd68-f1b4-48ab-b646-254eb9391b5e">
+* Node.js
+* Express.js
 
+### 🔸 **Machine Learning**
 
-<img width="850" alt="Screenshot 2024-05-26 at 10 08 56 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/2e17c358-89b6-4c74-afec-6f07db6515d4">
+* Python
+* Scikit-learn
+* TensorFlow
 
-<img width="1025" alt="Screenshot 2024-05-26 at 10 11 15 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/98283e49-c4cc-41ba-95b0-1a2e1afbff77">
+### 🔸 **Development Tools**
 
-<br>
-<br><br>
-Doctor Side :
-<br>
-<br><br>
-<img width="817" alt="Screenshot 2024-05-26 at 10 33 15 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/6761f2ab-7133-424a-b997-a5ca4bca2553">
-<br><br>
-<img width="1427" alt="Screenshot 2024-05-26 at 10 27 54 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/d4c03b71-916c-4fb5-8d37-34e5244b7ea0">
-<br><br>
-<img width="1363" alt="Screenshot 2024-05-26 at 10 28 16 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/e328184c-f7b8-422e-9945-58820179cc7b">
-<br><br>
-<img width="671" alt="Screenshot 2024-05-26 at 10 29 31 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/1572acf6-fd11-4044-9075-f8604de5657a">
-<br><br>
-<br><br>
-Diagnostic Side :
-<br>
-<img width="808" alt="Screenshot 2024-05-26 at 10 48 42 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/f66e9981-6b98-483c-bf25-560bc13f5fc0">
+* Ganache (Local Blockchain)
+* Truffle (Smart Contract Deployment & Testing)
+* Git (Version Control)
 
-<br>
+---
 
-<img width="761" alt="Screenshot 2024-05-26 at 10 43 57 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/f51db8b9-95d9-418e-ba42-f38e397de263">
+## 🚀 **Key Features**
 
-<br><br>
-Report has been reflected in record viewer so that both patient and doctor can see : 
-<br>
-<br>
+### 👤 **Patient Module**
 
-<img width="1395" alt="Screenshot 2024-05-26 at 10 44 59 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/b5549f81-7dd3-4e2c-8514-b44ed045fec2">
-<br><br>
-<img width="841" alt="Screenshot 2024-05-26 at 10 45 15 PM" src="https://github.com/Sonu208/Secure-Electronic-Health-Records/assets/99793746/c3b6c074-1fc2-4f92-a2ec-f4a3b6b0d4b2">
+* Secure registration & login (wallet + password)
+* Upload medical records (stored on IPFS)
+* View complete medical history
+* Grant/Revoke doctor access
+* View AI-based disease predictions
+* Interact with AI chatbot
 
-## For Full working project 
+### 🩺 **Doctor Module**
 
+* Access patient records (only with consent)
+* View medical history and reports
+* Add diagnosis and prescriptions
+* Monitor patient health insights
 
-contact : 
-[Mail](mailto:sonupradhan208@gmail.com?Subject=ehr-blockchain&Body=Hi,)
-`sonupradhan208@gmail.com`
+### 🧪 **Diagnostic Module**
 
-🆁🅴🆀🆄🅸🆁🅴🅼🅴🅽🆃🆂
+* Upload reports linked to patient wallet
+* Enable multi-source medical data entry
 
-1.Install nodeJs
+### 🤖 **AI Module**
 
-* [Node JS](https://nodejs.org/en/download/)
+* Disease risk prediction (Diabetes, Liver, Kidney)
+* Feature-based analysis using ML models
+* Explainable AI (SHAP/LIME)
+* Clinical insights and recommendations
 
-2.Install Ganache
+### 💬 **Chatbot Module**
 
-* [Ganache Truffle](https://www.trufflesuite.com/ganache)
+* Natural language interaction
+* Explains reports and predictions
+* Provides basic health guidance
 
-3. Download IPFS (kubo)
+---
 
-* [IPFS Kubo](https://dist.ipfs.tech/#go-ipfs)
+## 📸 **Screenshots**
 
-4.Add Metamask Extension in Browser
+### 🔹 Home Page
 
-* [Metamask Chrome](https://chrome.google.com/webstore/detail/metamask/nkbihfbeogaeaoehlefnkodbefgpgknn?hl=en-US)
+<img width="1439" height="718" alt="image" src="https://github.com/user-attachments/assets/b670c724-7320-4234-be40-dbbbf9e4bce9" />
 
-5. open cmd in project directory
+<img width="984" height="872" alt="image" src="https://github.com/user-attachments/assets/3465fce0-39da-4a7f-9340-4a7cd377e7b3" />
 
-```
+<img width="1092" height="790" alt="image" src="https://github.com/user-attachments/assets/75215b4d-b6e0-44ab-9984-6eb89c6a4eed" />
+
+<img width="835" height="671" alt="image" src="https://github.com/user-attachments/assets/d24cc793-d0b8-4aaa-8867-e72b7c482a61" />
+
+### 🔹 Login Page
+
+<img width="847" height="312" alt="image" src="https://github.com/user-attachments/assets/67c5e4b1-c7d4-4c34-849c-9d0cfd87639d" />
+
+### 🔹 Patient Dashboard
+
+<img width="1886" height="832" alt="image" src="https://github.com/user-attachments/assets/f143aae2-49a2-4999-8736-622a97204865" />
+
+<img width="1891" height="810" alt="image" src="https://github.com/user-attachments/assets/af32ffde-dce4-4165-840d-83f119b13292" />
+
+<img width="1851" height="572" alt="image" src="https://github.com/user-attachments/assets/8fb32974-69c5-4ef8-97c3-d9254b7c3f05" />
+
+<img width="1919" height="966" alt="image" src="https://github.com/user-attachments/assets/fe25f8b2-54cb-4865-a128-1a09c78ef0f5" />
+
+<img width="923" height="856" alt="image" src="https://github.com/user-attachments/assets/babfee3b-a299-48d2-9254-b47f9cabe7ef" />
+
+<img width="807" height="856" alt="image" src="https://github.com/user-attachments/assets/5ee6306b-4905-4d61-9059-af1870765c7a" />
+
+<img width="925" height="428" alt="image" src="https://github.com/user-attachments/assets/e30380b6-1fab-407e-94af-05b56046dfcd" />
+
+### 🔹 Doctor Dashboard
+
+<img width="1769" height="836" alt="image" src="https://github.com/user-attachments/assets/41ee51eb-81d6-4282-831a-79b593f8e27d" />
+
+<img width="1861" height="602" alt="image" src="https://github.com/user-attachments/assets/faab33ff-58c1-4de1-aeec-164e76671c4e" />
+
+<img width="1859" height="793" alt="image" src="https://github.com/user-attachments/assets/29568f40-c791-43c1-9dd4-3a0a001950e2" />
+
+<img width="669" height="826" alt="image" src="https://github.com/user-attachments/assets/6a67603e-4721-454e-8094-bc153f72a312" />
+
+<img width="1144" height="841" alt="image" src="https://github.com/user-attachments/assets/d45f4b9a-634b-446d-8018-6f4f077a04d6" />
+
+<img width="905" height="842" alt="image" src="https://github.com/user-attachments/assets/f5c0856f-5423-4730-8b0d-70f7446a2f9a" />
+
+### 🔹 Diagnostic Upload Interface
+
+<img width="1870" height="870" alt="image" src="https://github.com/user-attachments/assets/b4f7ca0e-f259-40be-8d5c-be4e04d0fc52" />
+
+<img width="689" height="805" alt="image" src="https://github.com/user-attachments/assets/20b82abd-9b71-4694-96b6-81deef1d5c2a" />
+
+### 🔹 Record Viewer
+
+<img width="1290" height="486" alt="image" src="https://github.com/user-attachments/assets/9a8c7db5-1fe8-40b1-8178-ddb2a9eedc27" />
+
+<img width="1009" height="795" alt="image" src="https://github.com/user-attachments/assets/e7249c8b-ed20-44bd-8f58-79ffed04d2c7" />
+
+### 🔹 AI Chatbot Interface
+
+<img width="484" height="683" alt="image" src="https://github.com/user-attachments/assets/7c25386d-6581-4071-9fbd-74f2daf59ec7" />
+
+<img width="482" height="678" alt="image" src="https://github.com/user-attachments/assets/9f1fc9bf-98cd-4250-981b-9ab3604928c1" />
+
+---
+## 📽️ Demo Video
+
+[![Watch Demo](https://github.com/user-attachments/assets/57abe416-1972-4e8a-95fa-a3bdb1dd4b6b)](https://drive.google.com/file/d/1Ns-X43yeu1R1m-iJlrR8-8AQBq8auJYY/view?usp=sharing)
+
+---
+
+## 🛠️ **Setup & Installation**
+
+### 1️⃣ Install Dependencies
+
+* Install Node.js
+* Install Ganache
+* Install MetaMask browser extension
+
+---
+
+### 2️⃣ Clone Repository & Install Packages
+
+```bash
 npm install --force
 ```
 
-5.open cmd/terminal as Administrator and type
+---
 
-```
+### 3️⃣ Install Truffle
+
+```bash
 npm install -g truffle
 ```
 
-6.open Ganache
- 
- *  New Workspace
- *  AddProject
- *  Select truffle-config.js in Project Directory
- *  Save Workspace
+---
 
-7.Compile and migrate Contracts
- ```
- truffle compile
- truffle migrate
- ```
-8. Run Server
+### 4️⃣ Setup Ganache
 
+* Open Ganache
+* Create new workspace
+* Add project → select `truffle-config.js`
+* Save workspace
+
+---
+
+### 5️⃣ Compile & Deploy Smart Contracts
+
+```bash
+truffle compile
+truffle migrate
 ```
+
+---
+
+### 6️⃣ Run the Application
+
+```bash
 npm start
 ```
+
+---
+
+## 🔐 **Security Highlights**
+
+* Blockchain-based data integrity
+* SHA-256 hashing for file verification
+* IPFS decentralized storage
+* Consent-based access control
+* Wallet-based authentication
+
+---
+
+## 📊 **System Benefits**
+
+* Tamper-proof medical records
+* Improved data privacy
+* Reduced dependency on centralized servers
+* AI-powered early disease detection
+* Enhanced doctor–patient interaction
+
+---
+
+## 📌 **Note**
+
+This project is developed for academic and research purposes to demonstrate the integration of blockchain, artificial intelligence, and decentralized storage in healthcare systems.
