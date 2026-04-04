@@ -1,4 +1,4 @@
-# 🏥 **HealthTrustAI – Secure & Intelligent Electronic Health Records System**
+# 🏥 **HealthTrustAI - Smart and Secure Digital Health Record System with AI Insights**
 
 ## 🔹 **Project Overview**
 
