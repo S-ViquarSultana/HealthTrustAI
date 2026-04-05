@@ -6,7 +6,11 @@ const cors = require("cors");
 const pinataSDK = require("@pinata/sdk");
 
 const app = express();
-app.use(cors());
+
+// ✅ Allow your Vercel frontend URL
+app.use(cors({
+  origin: ["https://health-trust-ai.vercel.app/", "http://localhost:3000"]
+}));
 
 const upload = multer();
 
@@ -14,6 +18,11 @@ const pinata = new pinataSDK(
   process.env.PINATA_API_KEY,
   process.env.PINATA_SECRET_KEY
 );
+
+// ✅ Health endpoint so UptimeRobot can ping it
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
+});
 
 app.post("/upload", upload.single("file"), async (req, res) => {
   try {
@@ -26,7 +35,7 @@ app.post("/upload", upload.single("file"), async (req, res) => {
     });
 
     res.json({
-      cid: result.IpfsHash,
+      cid: result.IpfsHash, // ✅ Only the hash, not the full URL
       url: `https://gateway.pinata.cloud/ipfs/${result.IpfsHash}`,
     });
 
@@ -36,4 +45,6 @@ app.post("/upload", upload.single("file"), async (req, res) => {
   }
 });
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+// ✅ Use process.env.PORT for Render
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
