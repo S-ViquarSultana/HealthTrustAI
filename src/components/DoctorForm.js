@@ -88,13 +88,6 @@ const handleCreateRecord = async () => {
 
     console.log("Sending transaction...");
 
-const recordData = `
-Record ID: ${recordId}
-Doctor: ${doctorAddress}
-Diagnosis: ${diagnosis}
-Prescription: ${prescription}
-`;
-
 await contract.methods
   .addConsultancyRecord(patientHH, recordId, hhNumber, diagnosis, prescription)
   .send({ from: account });
