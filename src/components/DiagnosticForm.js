@@ -18,60 +18,60 @@ function DiagnosticForm() {
   const [, setDiagnosticWallet] = useState("");
   const [file, setFile] = useState(null);
 
- const handleUpload = async () => {
-  try {
-    if (!file) {
-      alert("Select file first");
-      return;
+  const handleUpload = async () => {
+    try {
+      if (!file) {
+        alert("Select file first");
+        return;
+      }
+
+      if (!patientHH) {
+        alert("Enter Patient HH number");
+        return;
+      }
+
+      // 1️⃣ Upload to backend (Pinata)
+      const formData = new FormData();
+      formData.append("file", file);
+
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/upload`, // ✅ Use env var
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
+
+      const data = await response.json();
+      const cid = data.cid; // ✅ Only the CID, not the full URL
+
+      // 2️⃣ Connect MetaMask
+      const web3 = new Web3(window.ethereum);
+      await window.ethereum.request({ method: "eth_requestAccounts" });
+
+      const accounts = await web3.eth.getAccounts();
+      const account = accounts[0];
+
+      const networkId = await web3.eth.net.getId();
+      const deployedNetwork = PatientRegistration.networks[networkId];
+
+      const contract = new web3.eth.Contract(
+        PatientRegistration.abi,
+        deployedNetwork.address
+      );
+
+      // 3️⃣ Store only CID on blockchain (not full URL)
+      await contract.methods
+        .storeMedicalRecord(patientHH, cid) // ✅ cid only, not fileUrl
+        .send({ from: account });
+
+      alert("Report uploaded successfully!");
+
+    } catch (err) {
+      console.error(err);
+      alert("Upload failed");
     }
-
-    if (!patientHH) {
-      alert("Enter Patient HH number");
-      return;
-    }
-
-    // 1️⃣ Upload to backend (Infura)
-    const formData = new FormData();
-    formData.append("file", file);
-
-    const response = await fetch("http://localhost:5000/upload", {
-      method: "POST",
-      body: formData,
-    });
-
-    const data = await response.json();
-    const cid = data.cid;
-
-    const fileUrl = `https://ipfs.io/ipfs/${cid}`;
-
-    // 2️⃣ Connect MetaMask
-    const web3 = new Web3(window.ethereum);
-    await window.ethereum.request({ method: "eth_requestAccounts" });
-
-    const accounts = await web3.eth.getAccounts();
-    const account = accounts[0];
-
-    const networkId = await web3.eth.net.getId();
-    const deployedNetwork =
-      PatientRegistration.networks[networkId];
-
-    const contract = new web3.eth.Contract(
-      PatientRegistration.abi,
-      deployedNetwork.address
-    );
-
-    // 3️⃣ Store on blockchain
-    await contract.methods
-      .storeMedicalRecord(patientHH, fileUrl)
-      .send({ from: account });
-
-    alert("Report uploaded successfully!");
-
-  } catch (err) {
-    console.error(err);
-    alert("Upload failed");
-  }
-};
+  };
 
   return (
     <div>
@@ -93,22 +93,22 @@ function DiagnosticForm() {
 
             <div>
               <label>Doctor Name</label>
-              <input onChange={(e)=>setDoctorName(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
+              <input onChange={(e) => setDoctorName(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
             </div>
 
             <div>
               <label>Patient Name</label>
-              <input onChange={(e)=>setPatientName(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
+              <input onChange={(e) => setPatientName(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
             </div>
 
             <div>
               <label>Age</label>
-              <input onChange={(e)=>setAge(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
+              <input onChange={(e) => setAge(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
             </div>
 
             <div>
               <label>Gender</label>
-              <select onChange={(e)=>setGender(e.target.value)} className="w-full p-2 bg-gray-800 rounded">
+              <select onChange={(e) => setGender(e.target.value)} className="w-full p-2 bg-gray-800 rounded">
                 <option>Select Gender</option>
                 <option>Male</option>
                 <option>Female</option>
@@ -118,7 +118,7 @@ function DiagnosticForm() {
 
             <div>
               <label>Blood Group</label>
-              <select onChange={(e)=>setBloodGroup(e.target.value)} className="w-full p-2 bg-gray-800 rounded">
+              <select onChange={(e) => setBloodGroup(e.target.value)} className="w-full p-2 bg-gray-800 rounded">
                 <option>Select Blood Group</option>
                 <option>A+</option>
                 <option>B+</option>
@@ -131,24 +131,24 @@ function DiagnosticForm() {
               </select>
             </div>
 
-<div>
-  <label>Patient HH Number</label>
-  <input
-    type="text"
-    value={patientHH}
-    onChange={(e) => setPatientHH(e.target.value)}
-    className="w-full p-2 bg-gray-800 rounded"
-  />
-</div>
+            <div>
+              <label>Patient HH Number</label>
+              <input
+                type="text"
+                value={patientHH}
+                onChange={(e) => setPatientHH(e.target.value)}
+                className="w-full p-2 bg-gray-800 rounded"
+              />
+            </div>
 
             <div>
               <label>Diagnostic Wallet Address</label>
-              <input onChange={(e)=>setDiagnosticWallet(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
+              <input onChange={(e) => setDiagnosticWallet(e.target.value)} className="w-full p-2 bg-gray-800 rounded"/>
             </div>
 
             <div>
               <label>Upload Final Report</label>
-              <input type="file" onChange={(e)=>setFile(e.target.files[0])}/>
+              <input type="file" onChange={(e) => setFile(e.target.files[0])}/>
             </div>
 
             <div className="flex justify-between mt-6">
@@ -160,7 +160,7 @@ function DiagnosticForm() {
               </button>
 
               <button
-                onClick={()=>navigate(-1)}
+                onClick={() => navigate(-1)}
                 className="bg-red-500 px-6 py-2 rounded hover:bg-red-600"
               >
                 Cancel

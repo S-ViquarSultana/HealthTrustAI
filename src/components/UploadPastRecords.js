@@ -41,7 +41,6 @@ const UploadPastRecords = () => {
     init();
   }, []);
 
-
   const handleSubmit = async () => {
     if (!selectedFile) {
       alert("Please select a file");
@@ -51,28 +50,29 @@ const UploadPastRecords = () => {
     try {
       setIsLoading(true);
 
-      // Send file to backend
-const formData = new FormData();
-formData.append("file", selectedFile);
+      // ✅ Send file to Render backend
+      const formData = new FormData();
+      formData.append("file", selectedFile);
 
-const response = await fetch("http://localhost:5000/upload", {
-  method: "POST",
-  body: formData,
-});
+      const response = await fetch(
+        `${process.env.REACT_APP_BACKEND_URL}/upload`, // ✅ Use env var
+        {
+          method: "POST",
+          body: formData,
+        }
+      );
 
-const data = await response.json();
+      const data = await response.json();
+      const cid = data.cid; // ✅ Only the CID
 
-console.log("CID from backend:", data.cid);
+      console.log("CID from backend:", cid);
 
-const cid = data.cid;
-
-// Store CID in blockchain
-await contract.methods
-  .storeMedicalRecord(hhNumber, cid)
-  .send({ from: account });
+      // ✅ Store only CID in blockchain
+      await contract.methods
+        .storeMedicalRecord(hhNumber, cid)
+        .send({ from: account });
 
       alert("Record uploaded successfully!");
-
       navigate("/patient/" + hhNumber + "/viewrecords");
 
     } catch (error) {
