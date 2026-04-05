@@ -62,7 +62,7 @@ setConsultancyRecords(consultancyResult);
     init();
   }, [patientHH]);
 
-  const handleViewRecords = () => {
+  const _handleViewRecords = () => {
     navigate(`/patient/${patientHH}/viewrecords`, {
       state: {
         fromDoctor: true,
@@ -79,7 +79,7 @@ const doctorForm = () => {
   });
 };
 
-const handleCreateRecord = async () => {
+const _handleCreateRecord = async () => {
   if (!diagnosis || !prescription) {
     alert("Please fill all fields");
     return;

@@ -27,61 +27,62 @@ const Footer = () => {
           </div>
 
           {/* Useful Links */}
-          <div className="w-1/3">
-            <h3 className="font-bold text-xl mb-2">Useful Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:underline">
-                  About Us
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Services
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  FAQs
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Privacy Policy
-                </a>
-              </li>
-            </ul>
-          </div>
-          <div className="w-1/3">
-            <h3 className="font-bold text-xl mb-2">Other Links</h3>
-            <ul className="space-y-2">
-              <li>
-                <a href="#" className="hover:underline">
-                  Security Partners
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Medical Donors
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Sponsors
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Careers
-                </a>
-              </li>
-              <li>
-                <a href="#" className="hover:underline">
-                  Board Members Information
-                </a>
-              </li>
-            </ul>
-          </div>
+<div className="w-1/3">
+  <h3 className="font-bold text-xl mb-2">Quick Links</h3>
+  <ul className="space-y-2">
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        About Us
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Services
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        FAQs
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Privacy Policy
+      </button>
+    </li>
+  </ul>
+</div>
+
+<div className="w-1/3">
+  <h3 className="font-bold text-xl mb-2">Other Links</h3>
+  <ul className="space-y-2">
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Security Partners
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Medical Donors
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Sponsors
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Careers
+      </button>
+    </li>
+    <li>
+      <button className="hover:underline bg-transparent border-none cursor-pointer p-0 text-white">
+        Board Members Information
+      </button>
+    </li>
+  </ul>
+</div>
 
           {/* Social Media Icons */}
           <div className="w-1/3 flex justify-end items-center">

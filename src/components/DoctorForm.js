@@ -96,7 +96,7 @@ Prescription: ${prescription}
 `;
 
 await contract.methods
-  .storeMedicalRecord(patientHH, recordData)
+  .addConsultancyRecord(patientHH, recordId, hhNumber, diagnosis, prescription)
   .send({ from: account });
     alert("Medical Record Created Successfully!");
 

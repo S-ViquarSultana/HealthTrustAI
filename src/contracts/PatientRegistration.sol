@@ -132,8 +132,11 @@ function getMedicalRecords(string memory _hhNumber)
 }
 struct ConsultancyRecord {
     string recordId;
+    string doctorHH;        // ✅ added
     string diagnosis;
     string prescription;
+    uint256 timestamp;      // ✅ added
+    bool isRead;            // ✅ added
 }
 
 mapping(string => ConsultancyRecord[]) private consultancyRecords;
@@ -141,20 +144,33 @@ mapping(string => ConsultancyRecord[]) private consultancyRecords;
 function addConsultancyRecord(
     string memory _hhNumber,
     string memory _recordId,
+    string memory _doctorHH,        // ✅ added
     string memory _diagnosis,
     string memory _prescription
 ) public {
     consultancyRecords[_hhNumber].push(
-        ConsultancyRecord(_recordId, _diagnosis, _prescription)
+        ConsultancyRecord({
+            recordId: _recordId,
+            doctorHH: _doctorHH,
+            diagnosis: _diagnosis,
+            prescription: _prescription,
+            timestamp: block.timestamp,
+            isRead: false
+        })
     );
 }
 
 function getConsultancyRecords(string memory _hhNumber)
-    public
-    view
-    returns (ConsultancyRecord[] memory)
+    public view returns (ConsultancyRecord[] memory)
 {
     return consultancyRecords[_hhNumber];
+}
+
+// ✅ New: mark all consultations as read
+function markConsultanciesRead(string memory _hhNumber) public {
+    for (uint i = 0; i < consultancyRecords[_hhNumber].length; i++) {
+        consultancyRecords[_hhNumber][i].isRead = true;
+    }
 }
 
 function revokePermission(string memory _patientNumber, string memory _doctorNumber) public {

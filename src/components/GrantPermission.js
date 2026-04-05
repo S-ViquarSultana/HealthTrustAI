@@ -78,7 +78,7 @@ useEffect(() => {
   };
 
   loadPatientDetails();
-}, []);
+}, [hhNumber]);
   return (
     <div>
       <NavBarLogout />

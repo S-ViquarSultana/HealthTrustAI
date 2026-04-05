@@ -47,7 +47,7 @@ const ViewProfile = () => {
     };
 
     init();
-  }, []);
+  }, [contract, hhNumber]);
 
   useEffect(() => {
     const fetchPatientDetails = async () => {

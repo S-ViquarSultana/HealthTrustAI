@@ -1,30 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import Web3 from "web3";
 import { useNavigate, useParams } from "react-router-dom";
 import NavBarLogout from "./NavBarLogout";
 import PatientRegistration from "../build/contracts/PatientRegistration.json";
 import DoctorRegistration from "../build/contracts/DoctorRegistration.json";
 
-
 function ViewPatientList() {
   const navigate = useNavigate();
-  const { hhNumber } = useParams(); // Doctor HH Number
-
+  const { hhNumber } = useParams();
   const [patients, setPatients] = useState([]);
 
-  useEffect(() => {
-    loadPatients();
-  }, [hhNumber]);
-
-  const loadPatients = async () => {
+  // ✅ Move loadPatients ABOVE useEffect and wrap with useCallback
+  const loadPatients = useCallback(async () => {
     if (window.ethereum) {
       try {
         const web3 = new Web3(window.ethereum);
         await window.ethereum.request({ method: "eth_requestAccounts" });
 
         const networkId = await web3.eth.net.getId();
-        const deployedNetwork =
-          PatientRegistration.networks[networkId];
+        const deployedNetwork = PatientRegistration.networks[networkId];
 
         if (!deployedNetwork) {
           console.log("Contract not deployed on this network");
@@ -40,16 +34,19 @@ function ViewPatientList() {
           .getPatientList(hhNumber)
           .call();
 
-        console.log("Doctor HH:", hhNumber);
-        console.log("Fetched Patient List:", patientList);
-
         setPatients(patientList);
-
       } catch (error) {
         console.error("Error loading patients:", error);
       }
     }
-  };
+  }, [hhNumber]); // ✅ hhNumber is the real dependency
+
+  // ✅ Now useEffect can safely reference loadPatients
+  useEffect(() => {
+    loadPatients();
+  }, [loadPatients]);
+
+  // ... rest of your code unchanged
   
   const handleView = (patientHH) => {
     navigate(`/doctor/${hhNumber}/view/${patientHH}`);
