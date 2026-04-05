@@ -64,10 +64,17 @@ function ViewPatientRecords() {
     }
   };
 
-  const handleView = (cid) => {
-    const url = `https://gateway.pinata.cloud/ipfs/${cid}`;
-    window.open(url, "_blank");
-  };
+const handleView = (cid) => {
+  // ✅ Strip any full URL prefix, keep only the hash
+  const cleanCid = cid
+    .replace("https://ipfs.io/ipfs/", "")
+    .replace("https://gateway.pinata.cloud/ipfs/", "")
+    .replace("ipfs://", "")
+    .trim();
+
+  const url = `https://gateway.pinata.cloud/ipfs/${cleanCid}`;
+  window.open(url, "_blank");
+};
 
   const handleAIAnalysis = () => {
     window.open("https://healthtrustai.onrender.com/", "_blank");
