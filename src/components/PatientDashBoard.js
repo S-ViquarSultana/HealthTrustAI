@@ -136,7 +136,7 @@ const PatientDashBoard = () => {
         <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
           <div className="bg-gray-900 border border-teal-500 rounded-xl p-8 max-w-lg w-full mx-4 space-y-4 max-h-[80vh] overflow-y-auto">
             <h2 className="text-2xl font-bold text-teal-400">
-              🩺 New Consultation(s)
+              🩺 New Consultation
             </h2>
             {consultations.map((c, i) => (
               <div
