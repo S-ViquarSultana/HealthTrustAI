@@ -40,17 +40,23 @@ This approach enhances:
 * Node.js
 * Express.js
 
-### 🔸 **Machine Learning**
+### 🔸 **Machine Learning & AI**
 
 * Python
-* Scikit-learn
-* TensorFlow
+* Scikit-learn (model training & evaluation)
+* PyTorch
+* NumPy, Pandas, Matplotlib
+* SHAP / LIME (Explainable AI)
+* spaCy & Hugging Face Transformers (Chatbot / NLP)
 
 ### 🔸 **Development Tools**
 
 * Ganache (Local Blockchain)
 * Truffle (Smart Contract Deployment & Testing)
 * Git (Version Control)
+* Docker
+* Vercel (Frontend Deployment)
+* Render (Backend nd AI API Deployment)
 
 ---
 
@@ -77,18 +83,25 @@ This approach enhances:
 * Upload reports linked to patient wallet
 * Enable multi-source medical data entry
 
-### 🤖 **AI Module**
+### 🤖 **AI Analysis Module**
 
-* Disease risk prediction (Diabetes, Liver, Kidney)
-* Feature-based analysis using ML models
-* Explainable AI (SHAP/LIME)
-* Clinical insights and recommendations
+* Analyzes structured laboratory parameters: ALT, Creatinine, HbA1c, hemoglobin, blood glucose, blood pressure, BMI, cholesterol, and more
+* Evaluates values against clinical reference ranges to detect abnormal patterns
+* Generates disease risk scores with severity levels: Low, Moderate, High
+* Predicts risk for Liver Disease, Kidney Disease, and Diabetes
+* Trend analysis across multiple patient visits to identify health progression
+* Explainable AI (SHAP / LIME) for feature contribution visualization — no black-box predictions
+* Clinical insights with organ health assessment and recommended actions
+* ML models used: Logistic Regression, Random Forest, Support Vector Machine (SVM)
+* Dataset: sourced from Kaggle / UCI ML Repository; split 80% training / 20% testing
+* Preprocessing: missing value handling, normalization (Min-Max / Z-score), feature encoding
 
 ### 💬 **Chatbot Module**
 
-* Natural language interaction
-* Explains reports and predictions
-* Provides basic health guidance
+* Natural language interaction powered by spaCy & Hugging Face Transformers
+* Explains lab reports and AI predictions in plain language
+* Answers general health queries
+* Provides contextual guidance based on patient records
 
 ---
 
